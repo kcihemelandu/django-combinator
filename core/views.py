@@ -49,7 +49,7 @@ def words(request):
             "core/words.html",
         )
     if request.method == "POST":
-        words = request.POST.get("words")
+        words = request.POST.get("words").strip()
         number_of_combinations = int(request.POST.get("number_of_combinations"))
         word_list = words.split(",")
         possible_combinations = list(combinations(word_list, number_of_combinations))
