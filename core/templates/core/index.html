@@ -1,5 +1,33 @@
 {% extends 'main.html' %}
 
 {% block content %}
-This is the index page
+<section class="py-2 px-4">
+    <h2 class="text-center">Number Combinations</h2>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="startNumber" class="form-label">Number to start combination</label>
+                <input type="number" name="start_number" id="startNumber" min="1" value="1" required class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="stopNumber" class="form-label">Number to stop combination</label>
+                <input type="number" name="stop_number" id="stopNumbker" min="1" value="20" required class="form-control">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+<section>
+    <h2 class="text-center">Possible Combinations</h2>
+    {% if combinations %}
+    {% for combination in combinations %}
+    <div class="bg-primary p-2 text-white fw-bold d-inline-block m-2">
+        {{combination}}
+    </div>
+    {% endfor %}
+    {% endif %}
+</section>
 {% endblock content %}
