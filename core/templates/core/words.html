@@ -2,17 +2,13 @@
 
 {% block content %}
 <section class="py-2 px-4">
-    <h2 class="text-center">Number Combinations</h2>
+    <h2 class="text-center">Word Combinations</h2>
     <div>
         <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="startNumber" class="form-label">Number to start combination</label>
-                <input type="number" name="start_number" id="startNumber" min="1" value="1" required class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="stopNumber" class="form-label">Number to stop combination</label>
-                <input type="number" name="stop_number" id="stopNumbker" min="1" value="20" required class="form-control">
+                <label for="words" class="form-label">Words (separated with commas)</label>
+                <input type="text" name="words" id="words" required class="form-control" placeholder="Word1, Word2, Word3...">
             </div>
             <div class="mb-3">
                 <label for="number_of_combinations" class="form-label">Number of combinations</label>
@@ -24,10 +20,9 @@
         </form>
     </div>
 </section>
-<section class="px-4">
-    {% if combinations %}
+<section>
     <h2 class="text-center">Possible Combinations</h2>
-    <h3>Total Combinations: {{ combinations_length }}</h3>
+    {% if combinations %}
     {% for combination in combinations %}
     <div class="bg-primary p-2 text-white fw-bold d-inline-block m-2">
         {{combination}}
