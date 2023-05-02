@@ -20,13 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0o70jew30^prtkh3q*nf$i$ach(zo_=0t)i_e2w-zp3#(g8u21"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY", "cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag"
+)
 
-ALLOWED_HOSTS = []
+
+if os.environ.get("DJANGO_DEBUG") == "False":
+    DEBUG = False
+else:
+    DEBUG = True
+
+
+ALLOWED_HOSTS = ["django-combinator.onrender.com"]
 
 
 # Application definition
@@ -118,7 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = os.path.join(BASE_DIR, "assets"),
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "assets"),)
+STATIC_ROOT = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
