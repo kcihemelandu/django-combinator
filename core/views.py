@@ -13,6 +13,7 @@ def index(request):
         start_number = int(request.POST.get("start_number"))
         stop_number = int(request.POST.get("stop_number"))
         number_of_combinations = int(request.POST.get("number_of_combinations"))
+        repition_number = int(request.POST.get("repition_number"))
         possible_combinations = list(
             combinations(
                 range(start_number, stop_number + 1),
@@ -20,6 +21,22 @@ def index(request):
             )
         )
 
+        num_limit = repition_number
+        num_count = {}
+
+        filtered_list = []
+
+        for t in possible_combinations:
+            for n in t:
+                try:
+                    if num_count[n] < num_limit:
+                        filtered_list.append(t)
+                        num_count[n] = num_count.get(n, 0) + 1
+                except KeyError:
+                    num_count[n] = num_count.get(n, 0) + 1
+                    continue
+
+        possible_combinations = filtered_list
         possible_string_combinations = []
 
         for combination in possible_combinations:

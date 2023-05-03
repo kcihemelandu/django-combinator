@@ -26,13 +26,14 @@ SECRET_KEY = os.environ.get(
 )
 
 
-if os.environ.get("DJANGO_DEBUG") == "False":
-    DEBUG = False
-else:
-    DEBUG = True
+# if os.environ.get("DJANGO_DEBUG") == "False":
+#     DEBUG = False
+# else:
+#     DEBUG = True
 
+DEBUG = True
 
-ALLOWED_HOSTS = ["django-combinator.onrender.com"]
+ALLOWED_HOSTS = ["django-combinator.onrender.com", "127.0.0.1"]
 
 
 # Application definition
