@@ -22,19 +22,46 @@ def index(request):
         )
 
         num_limit = repition_number
-        num_count = {}
+        num_count = []
 
-        filtered_list = []
+        filtered_list = [
+            # combination
+            # for combination in possible_combinations
+            # if all(num_count.get(number, 0) < num_limit for number in combination)
+        ]
+        # for combination in possible_combinations:
+        #     for number in combination:
+        #         num_count[number] = num_count.get(number, 0) + 1
 
-        for t in possible_combinations:
-            for n in t:
-                try:
-                    if num_count[n] < num_limit:
-                        filtered_list.append(t)
-                        num_count[n] = num_count.get(n, 0) + 1
-                except KeyError:
-                    num_count[n] = num_count.get(n, 0) + 1
-                    continue
+        filtered_list = [
+            # combination
+            # for combination in possible_combinations
+            # if all(num_count.count(number) < num_limit for number in combination)
+        ]
+
+        for combination in possible_combinations:
+            all_value = []
+            for number in combination:
+                num_count.append(number)
+                all_value.append(num_count.count(number) <= num_limit)
+                if not all(value for value in all_value):
+                    num_count.pop()
+
+            if all(value for value in all_value):
+                if not (combination in filtered_list):
+                    filtered_list.append(combination)
+
+        # for combination in possible_combinations:
+        #     for number in combination:
+        #         num_count.append(number)
+
+        # for combination in possible_combinations:
+        #     for number in combination:
+        #         num_count.append(number)
+        #         if all(num_count.count(number) < num_limit) and not (
+        #             combination in filtered_list
+        #         ):
+        #             filtered_list.append(combination)
 
         possible_combinations = filtered_list
         possible_string_combinations = []
